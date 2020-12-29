@@ -94,13 +94,6 @@
             android:layout_height="wrap_content"
             android:text="Hello World!" />
 
-
-        <Button
-            android:text="버튼"
-            android:id="@+id/button"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
-
         <Button
             android:id="@+id/insert_button"
             android:text="삽입"

@@ -40,7 +40,7 @@ class ReviewActivity : AppCompatActivity(), ActivityCompat.OnRequestPermissionsR
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_review)
 
-        upLoadServerUri = "http://" + "192.168.0.180" + "/UploadToServer.php"//서버컴퓨터의 ip주소
+        upLoadServerUri = "http://" + "192.168.0.178" + "/UploadToServer.php"//서버컴퓨터의 ip주소
 
         imageView.setImageResource(R.drawable.picture)
         ActivityCompat.requestPermissions(
@@ -64,7 +64,7 @@ class ReviewActivity : AppCompatActivity(), ActivityCompat.OnRequestPermissionsR
         try{
 
             val retClient = Okhttp3RetrofitManager.getRetrofitService(Service2::class.java)
-            val retrofit = retClient.downloadImage("5_Nightscape.jpg")
+            val retrofit = retClient.ReviewImgApi("5_Nightscape.jpg")
             retrofit.enqueue(object : Callback<ResponseBody> {
                 override fun onFailure(call: Call<ResponseBody>, t: Throwable) {
                     t.printStackTrace()
@@ -77,7 +77,7 @@ class ReviewActivity : AppCompatActivity(), ActivityCompat.OnRequestPermissionsR
 
                         imageView.setImageBitmap(bitmap)
 
-                        Toast.makeText(applicationContext, "다운로드 성공", Toast.LENGTH_LONG).show()
+                        //Toast.makeText(applicationContext, "다운로드 성공", Toast.LENGTH_LONG).show()
 
                     }
                 }

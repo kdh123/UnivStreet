@@ -16,30 +16,21 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        try {
 
-            val retClient = Okhttp3RetrofitManager.getRetrofitService(Service2::class.java)
-            val retrofit = retClient.ApiService("Gloria")
-            retrofit.enqueue(object : Callback<infor> {
-                override fun onFailure(call: Call<infor>, t: Throwable) {
-                    t.printStackTrace()
-                }
-                override fun onResponse(call: Call<infor>, response: Response<infor>) {
-                    if(response.body()!=null){
+        china_food.setOnClickListener{
+            restaurantInfo("중국집")
+        }
 
-                        if(response.body()?.result?.size!! > 0){
-                            val result = "result : ${response.body()?.result?.get(0)?.get("address")}"
-                            text1.text = result
-                        } else{
-                            text1.text = "없음"
-                        }
+        chicken.setOnClickListener{
+            restaurantInfo("치킨")
+        }
 
-                    }
-                }
-            })
+        ramen.setOnClickListener{
+            restaurantInfo("분식")
+        }
 
-        } catch (e : Exception){
-            Toast.makeText(applicationContext, "오류", Toast.LENGTH_LONG).show()
+        cafe.setOnClickListener{
+            restaurantInfo("카페")
         }
 
         insert_button.setOnClickListener{
@@ -69,13 +60,21 @@ class MainActivity : AppCompatActivity() {
 
         }
 
-        button.setOnClickListener{
-            var intent = Intent(this, ReviewActivity::class.java)
-            intent.putExtra("word", "hello");
-            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
-            startActivity(intent)
-        }
 
     }
+
+
+    fun restaurantInfo(menu : String){
+
+        var intent = Intent(this, InfoActivity::class.java)
+        intent.putExtra("menu", menu);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+        startActivity(intent)
+
+    }
+
+
+
+
 
 }
